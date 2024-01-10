@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MenuUnroutedComponent } from "./shared/menu-unrouted/menu-unrouted.component";
+import { ThreeJsViewerRoutedComponent } from './shared/three-js-viewer-routed/three-js-viewer-routed.component';
 
 export const routes: Routes = [
-    
+    { path: '', component: ThreeJsViewerRoutedComponent },
 ];
 
 @NgModule({

@@ -1,1 +1,42 @@
-<p>MENU</p>
+
+
+<nav class="navbar alturaNavbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://lluiment.es">
+        <img src="../../../assets/lluiment.webp" width="112" height="200">
+      </a>
+  
+
+      <div>
+        
+      </div>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" (click)="toggleNavbar()">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{'is-active': isNavbarActive}">
+      
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons is-centered p-5 ">
+            <p-button label="Lúcete" icon="pi pi-user-plus" class="mr-2"  severity="warning" [text]="true"></p-button>
+            
+            <p-button (click)="showDialog()" icon="pi pi-user" label="Ilumina" severity="warning" [text]="true"></p-button>
+                <p-dialog [(visible)]="visible">
+                    <app-login-unrouted></app-login-unrouted>
+                </p-dialog>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    
+  </nav>
+
+ 
