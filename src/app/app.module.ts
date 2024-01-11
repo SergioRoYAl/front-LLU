@@ -17,8 +17,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { LoginUnroutedComponent } from "./shared/login-routed/login-unrouted.component";
+import { LoginUnroutedComponent } from "./shared/login-unrouted/login-unrouted.component";
 import { ThreeJsViewerRoutedComponent } from "./shared/three-js-viewer-routed/three-js-viewer-routed.component";
+import { HomeRoutedComponent } from "./shared/home-routed/home-routed.component";
+import { DialogService } from "primeng/dynamicdialog";
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { ThreeJsViewerRoutedComponent } from "./shared/three-js-viewer-routed/th
         MenuUnroutedComponent,
         FooterUnroutedComponent,
         LoginUnroutedComponent,
-        ThreeJsViewerRoutedComponent
+        ThreeJsViewerRoutedComponent,
+        HomeRoutedComponent
     ],
     imports: [
         CommonModule,
@@ -47,6 +50,7 @@ import { ThreeJsViewerRoutedComponent } from "./shared/three-js-viewer-routed/th
         UserAjaxService,
         CryptoService,
         MatSnackBar,
+        DialogService,
 
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     ],

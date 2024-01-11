@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { API_URL } from '../../environment/environment';
 import { Observable, Subject } from 'rxjs';
-import { IToken, SessionEvent } from '../model/model.interfaces';
+import { IToken, IUser, SessionEvent } from '../model/model.interfaces';
 import { HttpClient } from '@angular/common/http';
 import { UserAjaxService } from './user.ajax.service';
 
@@ -11,7 +11,8 @@ import { UserAjaxService } from './user.ajax.service';
 export class SessionAjaxService {
 
     sUrl: string = API_URL + "/sesion";
-
+    loggedIn: boolean = false;
+    loginSuccessEvent = new EventEmitter<void>();
     subjectSession = new Subject<SessionEvent>();
   
     constructor(
@@ -59,7 +60,14 @@ export class SessionAjaxService {
     }
   }
 
-  getUsername(): string | null{
+  setLoggedIn(value: boolean): void {
+    this.loggedIn = value;
+    if (value) {
+      this.loginSuccessEvent.emit();
+    }
+  }
+
+  getUsername(): string {
     if(this.isSessionActive()) {
       let token: string | null = localStorage.getItem("token");
       if(!token) {
@@ -80,5 +88,12 @@ export class SessionAjaxService {
     this.subjectSession.next(event);
   }
 
+  getSessionUser(): Observable<IUser> | null {
+    if (this.isSessionActive()) {
+        return this.oUserAjaxService.getByUsername(this.getUsername())
+    } else {
+        return null;
+    }
+}
 
 }

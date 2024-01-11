@@ -3,7 +3,7 @@
 <nav class="navbar alturaNavbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://lluiment.es">
-        <img src="../../../assets/lluiment.webp" width="112" height="200">
+        <img src="../../../assets/lluïment1.webp" width="256" id="logo">
       </a>
   
 
@@ -21,12 +21,12 @@
     <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{'is-active': isNavbarActive}">
       
   
-      <div class="navbar-end">
+      <div class="navbar-end" *ngIf="!strUserName">
         <div class="navbar-item">
           <div class="buttons is-centered p-5 ">
-            <p-button label="Lúcete" icon="pi pi-user-plus" class="mr-2"  severity="warning" [text]="true"></p-button>
+            <p-button  label="Lúcete" icon="pi pi-user-plus" class="mr-2 lucete"  severity="warning" [text]="true" size="large"></p-button>
             
-            <p-button (click)="showDialog()" icon="pi pi-user" label="Ilumina" severity="warning" [text]="true"></p-button>
+            <p-button (click)="showDialog()" icon="pi pi-user" label="Ilumina" class="lucete" severity="warning" [text]="true" size="large"></p-button>
                 <p-dialog [(visible)]="visible">
                     <app-login-unrouted></app-login-unrouted>
                 </p-dialog>

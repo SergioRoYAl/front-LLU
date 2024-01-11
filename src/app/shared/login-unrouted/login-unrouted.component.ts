@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginUnroutedComponent implements OnInit {
 
   loginForm: FormGroup;
+  loggedIn = false;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -40,6 +41,10 @@ export class LoginUnroutedComponent implements OnInit {
           this.oSessionService.emit({ type: 'login' });
           this.oMatSnackBar.open("Loggin successfull.", '', { duration: 2000 });
           this.oRouter.navigate(['/home']);
+
+          //close the dialog
+          
+          this.oSessionService.setLoggedIn(true);
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
@@ -48,6 +53,8 @@ export class LoginUnroutedComponent implements OnInit {
       });
     }
   }
+
+ 
 
   onReset() {
     this.loginForm.reset();
