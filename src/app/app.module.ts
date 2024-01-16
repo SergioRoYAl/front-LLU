@@ -18,7 +18,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LoginUnroutedComponent } from "./shared/login-unrouted/login-unrouted.component";
-import { ThreeJsViewerRoutedComponent } from "./shared/three-js-viewer-routed/three-js-viewer-routed.component";
 import { HomeRoutedComponent } from "./shared/home-routed/home-routed.component";
 import { DialogService } from "primeng/dynamicdialog";
 
@@ -29,7 +28,6 @@ import { DialogService } from "primeng/dynamicdialog";
         MenuUnroutedComponent,
         FooterUnroutedComponent,
         LoginUnroutedComponent,
-        ThreeJsViewerRoutedComponent,
         HomeRoutedComponent
     ],
     imports: [

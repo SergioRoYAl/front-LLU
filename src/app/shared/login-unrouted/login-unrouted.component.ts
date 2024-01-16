@@ -40,7 +40,7 @@ export class LoginUnroutedComponent implements OnInit {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });
           this.oMatSnackBar.open("Loggin successfull.", '', { duration: 2000 });
-          this.oRouter.navigate(['/home']);
+          this.oRouter.navigate(['/']);
 
           //close the dialog
           

@@ -11,6 +11,11 @@
         
       </div>
 
+      <div class="navbar-item">
+        <p-button  label="TIENDA"class="mr-2 "  severity="warning" [text]="true" size="large"></p-button>
+        <p-button  label="BLOG"class="mr-2 "  severity="warning" [text]="true" size="large"></p-button>
+      </div>
+
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" (click)="toggleNavbar()">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -30,6 +35,13 @@
                 <p-dialog [(visible)]="visible">
                     <app-login-unrouted></app-login-unrouted>
                 </p-dialog>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-end" *ngIf="strUserName">
+        <div class="navbar-item">
+          <div class="buttons is-centered p-5">
+            <p-button (click)="logout()" label="APAGAR" icon="pi pi-times" [text]="true"></p-button>
           </div>
         </div>
       </div>

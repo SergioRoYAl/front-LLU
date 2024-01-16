@@ -8,6 +8,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IUser, SessionEvent } from '../../model/model.interfaces';
 import { UserAjaxService } from '../../services/user.ajax.service';
 import { Subject, takeUntil } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class MenuUnroutedComponent implements OnInit {
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
     private oUserAjaxService: UserAjaxService,
-    private oRouter: Router
+    private oRouter: Router,
+    private oMatSnackBar: MatSnackBar
     
   ) { 
     this.oRouter.events.subscribe((ev) => {
@@ -60,6 +62,13 @@ export class MenuUnroutedComponent implements OnInit {
   closeDialog() {
       this.visible = false;
   } 
+
+  logout(){
+    this.oSessionService.logout();
+    this.oSessionService.emit({ type: 'logout' });
+    this.oMatSnackBar.open("Logout successfull.", '', { duration: 2000 });
+    this.oRouter.navigate(['/']);
+  }
 
   ngOnInit() {
     this.oSessionService.on().subscribe({
