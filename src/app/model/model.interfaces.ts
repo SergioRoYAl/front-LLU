@@ -1,3 +1,7 @@
+
+
+
+
 export interface Sort {
     empty: boolean;
     sorted: boolean;
@@ -46,6 +50,9 @@ export interface IUser extends IEntity {
     role: boolean;
     fechaNacimiento: Date;
     email: string;
+    noticias: number;
+    respuestas: number;
+    documentos: number;
 }
 
 export interface IUserPage extends IPage<IUser> {
@@ -64,14 +71,39 @@ export interface IProducto extends IEntity {
 export interface IProductoPage extends IPage<IProducto> {
 }
 
+export interface INoticia extends IEntity {
+    titulo: string;
+    descripcion: string;
+    user: IUser;
+}
+
+export interface INoticiaPage extends IPage<INoticia> {
+
+}
 
 export interface IRespuesta extends IEntity {
-    id_usuario: number;
+    user: IUser;
     respuesta: string;
-    id_noticia: number;
+    noticia: INoticia;
 }
 
 export interface IRespuestaPage extends IPage<IRespuesta> {
+
+}
+
+export interface IDetallePedido extends IEntity {
+    documento: IDocumento;
+    producto: IProducto;
+    cantidad: number;
+    precio: number;
+}
+
+export interface IDocumento extends IEntity {
+    user: IUser;
+    fecha_pedido: Date;
+}
+
+export interface IDocumentoPage extends IPage<IDocumento> {
 
 }
 
@@ -87,3 +119,9 @@ export interface IToken {
     name: string;
 }
 
+export interface PaginatorState {
+    page?: number;
+    first?: number;
+    rows?: number;
+    pageCount?: number;
+}

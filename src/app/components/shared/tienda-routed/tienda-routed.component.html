@@ -1,0 +1,8 @@
+
+<h1 class="text-center">Tienda</h1>
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let product of products">
+    <app-product-card-unrouted [product]="product"></app-product-card-unrouted>
+  </div>
+</div>

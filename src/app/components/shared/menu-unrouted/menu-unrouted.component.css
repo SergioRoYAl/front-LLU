@@ -1,0 +1,17 @@
+#logo{
+    max-height: none;
+}
+
+.lucete{
+    color: black ;
+}
+
+:host ::ng-deep .p-button{
+    color: yellow;
+    text-shadow: 2px 2px 1px black;
+    font-size:24px; 
+}
+
+nav{
+    background-color: lightyellow;
+}

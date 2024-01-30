@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class UserAjaxService {
 
-  sUrl: string = API_URL + "/luzDe";
+  sUrl: string = API_URL + "/luz";
 
   constructor(
     private oHttpClient: HttpClient
@@ -21,7 +21,7 @@ export class UserAjaxService {
   }
 
   getByUsername(username: string): Observable<IUser>{
-    return this.oHttpClient.get<IUser>(this.sUrl + "/" + username);
+    return this.oHttpClient.get<IUser>(this.sUrl + "/de/" + username);
   }
 
   getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): 

@@ -1,0 +1,10 @@
+
+
+<p-card [style]="{ width: '360px' }" >
+  <img src="path/to/your/image.jpg" alt="Product Image">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.nombre }}</h5>
+    <p class="card-text">{{ product.descripcion }}</p>
+    <p class="card-text">Precio: {{ product.precio | currency:'EUR':'symbol' }}</p>
+  </div>
+</p-card>
