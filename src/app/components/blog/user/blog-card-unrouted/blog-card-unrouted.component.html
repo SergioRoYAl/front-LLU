@@ -1,0 +1,12 @@
+
+
+<p-card class="flex"  >
+  
+  <div class="card-body">
+    <h5 class="card-title">{{ noticia.titulo }}</h5>
+    <p class="card-text">{{ noticia.descripcion }}</p>
+    <img class="card-image" [src]="imageSrc" alt="Noticia Image">
+    <p class="card-text">Escrito por: {{ noticia.usuario.nombre}}</p>
+    
+  </div>
+</p-card>

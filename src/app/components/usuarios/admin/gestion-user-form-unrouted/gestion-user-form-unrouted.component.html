@@ -1,0 +1,85 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      {{status!.error.message}} - {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center my-3">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <mat-form-field *ngIf="operation=='EDIT'">
+            <mat-label>ID:</mat-label>
+            <input matInput formControlName="id" placeholder="ID" required readonly>
+            <mat-hint align="end">(can't change this number)</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Nombre:</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('nombre', 'required')">El nombre es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Apellidos:</mat-label>
+            <input matInput formControlName="apellidos" placeholder="Apellidos" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('apellidos', 'required')">Los apellidos son necesaria</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Dirección:</mat-label>
+            <input matInput formControlName="direccion" placeholder="Dirección">
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error >La dirección es necesaria</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Username:</mat-label>
+            <input matInput formControlName="username" placeholder="Username">
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error >El username es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-radio-group matInput formControlName="role" aria-label="Selecciona una opción" required>
+            <mat-label>Rol:</mat-label>
+            <mat-radio-button value="false">Admin</mat-radio-button>
+            <mat-radio-button value="true">User</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Fecha nacimiento:</mat-label>
+            <input matInput formControlName="fecha_nacimiento" placeholder="Color" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('fecha_nacimiento', 'required')">El color es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Email:</mat-label>
+            <input matInput formControlName="email" placeholder="Email" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('email', 'required')">El email es necesario</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">Guardar Producto</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

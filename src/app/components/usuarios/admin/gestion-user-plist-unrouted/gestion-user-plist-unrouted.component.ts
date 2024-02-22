@@ -6,7 +6,7 @@ import { UserAjaxService } from '../../../../services/user.ajax.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject } from 'rxjs';
+import { Subject, debounceTime, of, switchMap } from 'rxjs';
 import { GestionUserDetailUnroutedComponent } from '../gestion-user-detail-unrouted/gestion-user-detail-unrouted.component';
 @Component({
   selector: 'app-gestion-user-plist-unrouted',
@@ -16,8 +16,10 @@ import { GestionUserDetailUnroutedComponent } from '../gestion-user-detail-unrou
 export class GestionUserPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  @Input() id_user: number = 0;
   bLoading: boolean = false;
 
+  oUser: IUser | null = null;
   oPage: IUserPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
@@ -54,6 +56,10 @@ export class GestionUserPlistUnroutedComponent implements OnInit {
         this.status = error;
       }
     })
+  }
+
+  getValue(event: any): string {
+    return event.target.value;
   }
 
   onPageChange(event: PaginatorState) {
@@ -107,5 +113,18 @@ export class GestionUserPlistUnroutedComponent implements OnInit {
       }
     });
   }
+
+  search(filterValue: string): void {
+
+      this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', this.id_user, filterValue)
+        .pipe(
+          debounceTime(10),
+          switchMap((data: IUserPage) => {
+            return of(data);
+          })
+        )
+    
+    }
+  
 
 }

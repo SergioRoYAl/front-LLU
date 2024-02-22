@@ -5,15 +5,17 @@
       <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Username is required</mat-error>
     </mat-form-field>
   
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width input2">
       <input matInput type="password" placeholder="Password" formControlName="password">
       <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
       <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters length</mat-error>
     </mat-form-field>
   </div>
   
-  <div class="control-group ">
-  <button class="mx-1" mat-raised-button type="submit" color="primary">Iniciar sesión</button>
-  <button class="mx-1" mat-raised-button type="button" color="warn" (click)="onReset()">Reset</button>
+  <div class="control-group">
+    <div class="inicio">
+
+      <button class="mx-1 btn btn-warning" mat-raised-button type="submit" color="primary">Iniciar sesión</button>
+    </div>
   </div>
 </form>

@@ -1,0 +1,8 @@
+.elementos{
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Opcional: centra horizontalmente el contenido */
+    height: 200px; /* Altura del contenedor, ajusta según sea necesario */
+    border: 1px solid black; /* Solo para visualización */
+    font-size: 1.4vw;
+}

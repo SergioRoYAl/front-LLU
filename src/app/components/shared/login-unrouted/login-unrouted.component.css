@@ -6,11 +6,21 @@ form{
 .inputs{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    align-content: space-between;
+}
+
+.input2{
+    margin-left: 10px;
+
 }
 
 .botones{
     display: flex;
     align-items: center;
     justify-items: center;
+}
+
+.inicio{
+    display: flex;
+    justify-content: end;
 }

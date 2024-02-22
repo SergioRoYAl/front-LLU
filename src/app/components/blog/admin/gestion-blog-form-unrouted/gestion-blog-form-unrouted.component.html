@@ -1,0 +1,67 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      {{status!.error.message}} - {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center my-3">
+      <form [formGroup]="noticiaForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <mat-form-field *ngIf="operation=='EDIT'">
+            <mat-label>ID:</mat-label>
+            <input matInput formControlName="id" placeholder="ID" required readonly>
+            <mat-hint align="end">(can't change this number)</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Titulo:</mat-label>
+            <input matInput formControlName="titulo" placeholder="Titulo" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('titulo', 'required')">El titulo es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Descripcion:</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Descripcion" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('descripcion', 'required')">La descripcion es necesaria</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div formGroupName="usuario">
+          <div class="form-group">
+            <mat-form-field [style.width.px]=100>
+              <mat-label>USER:</mat-label>
+              <input matInput formControlName="id" placeholder="usuario" required readonly>
+            </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
+              Find a user</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-radio-group formControlName="visible" aria-label="Selecciona una opción">
+            <mat-label>VISIBILIDAD:</mat-label>
+            <mat-radio-button value="true">Visible</mat-radio-button>
+            <mat-radio-button value="false">No visible</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+
+
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!noticiaForm.valid">Save User</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

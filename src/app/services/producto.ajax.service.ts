@@ -20,6 +20,13 @@ export class ProductoAjaxService {
   }
 
   //REALIZAR LA TAREA PARA 
+  getPageAdmin(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): 
+    Observable<IProductoPage>{
+      if (!size) size = 10;
+      if (!page) page = 0;
+      return this.oHttpClient.get<IProductoPage>(this.sUrl + "/full" + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
+  }
+
   getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): 
     Observable<IProductoPage>{
       if (!size) size = 10;

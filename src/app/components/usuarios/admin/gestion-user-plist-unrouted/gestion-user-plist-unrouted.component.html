@@ -5,7 +5,7 @@
               <mat-icon class="icon-display" style="transform: scale(2);">person</mat-icon>
           </div>
           <div class="d-flex justify-content-center">
-              <h1 class="my-3">List of users</h1>
+              <h1 class="my-3">Lista de usuarios</h1>
           </div>
           <div class="card text-center m-5" *ngIf="bLoading">
               <div class="card-body">
@@ -16,7 +16,7 @@
               </div>
           </div>
           <div class="d-flex justify-content-center" *ngIf="!bLoading">
-              <a class="btn btn-primary mx-1" [routerLink]="['/admin','user','new']">New user</a>
+              <a class="btn btn-primary mx-1" [routerLink]="['/gUsuarios','new']">Nuevo usuario</a>
           </div>
       </div>
       <div *ngIf="status!=null">
@@ -29,14 +29,15 @@
       
       <div *ngIf="status==null">
         <div class="d-flex justify-content-between mb-3">
-          <h3>No active filter</h3>
-          <h3>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} users.</h3>
+          <h3>No hay filtros activos</h3>
+          <h3>Mostrando {{oPage?.numberOfElements}} de un total de {{oPage?.totalElements}} usuarios.</h3>
         </div>
+        
+        <input type="text" (keyup)="search(getValue($event))" id="name" placeholder="Search" />
         <div class="flex justify-content-center mb-3">
           <p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-            [totalRecords]="oPage?.totalElements || 0"></p-paginator>
+            [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
         </div>
-      
       
         <div class="mb-5 ">
           <table class="table table-bordered table-striped table-hover table-sm">
@@ -68,24 +69,24 @@
                   <span *ngIf="u.role==false">Admin</span>
                 </td>
                 <td class="text-center">
-                  <a [routerLink]="['/admin','thread','plist','byuser',u.id]" *ngIf="u.noticias>0">{{u.noticias}}</a>
+                  <a [routerLink]="['/gBlog','byuser',u.id]" *ngIf="u.noticias>0">{{u.noticias}}</a>
                   <span *ngIf="u.noticias<=0">0</span>
                 </td>
                 <td class="text-center">
-                  <a [routerLink]="['/admin','reply','plist','byuser',u.id]" *ngIf="u.respuestas>0">{{u.respuestas}}</a>
+                  <a [routerLink]="['/gRespuestas','byuser',u.id]" *ngIf="u.respuestas>0">{{u.respuestas}}</a>
                   <span *ngIf="u.respuestas<=0">0</span>
                 </td>
                 <td class="text-center">
-                  <a [routerLink]="['/admin','reply','plist','byuser',u.id]" *ngIf="u.documentos>0">{{u.documentos}}</a>
+                  <a [routerLink]="['/gPedidos','byuser',u.id]" *ngIf="u.documentos>0">{{u.documentos}}</a>
                   <span *ngIf="u.documentos<=0">0</span>
                 </td>
                 
                 <td class="text-center">
                   <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <button class="btn btn-primary" [routerLink]="['/admin','user','view',u.id]"><i
+                    <button class="btn btn-primary" [routerLink]="['/gUsuarios', 'detail',u.id]"><i
                         class="pi pi-eye"></i></button>
                     <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
-                    <button class="btn btn-warning" [routerLink]="['/admin','user','edit',u.id]"><i
+                    <button class="btn btn-warning" [routerLink]="['/gUsuarios','edit',u.id]"><i
                         class="pi pi-pencil"></i></button>
                     <button *ngIf="u.noticias==0 && u.respuestas==0" class="btn btn-danger" (click)="doRemove(u)"><i
                         class="pi pi-trash"></i></button>

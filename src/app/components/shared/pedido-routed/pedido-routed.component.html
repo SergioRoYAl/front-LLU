@@ -1,0 +1,7 @@
+<div *ngIf="strUserName">
+    <h1 class="text-center mt-5 mb-5">PEDIDOS</h1>
+  <app-pedido-unrouted></app-pedido-unrouted>
+</div>
+<div *ngIf="!strUserName">
+    <h1 class="text-center "> Debes estar registrado para poder hacer pedidos</h1>
+</div>

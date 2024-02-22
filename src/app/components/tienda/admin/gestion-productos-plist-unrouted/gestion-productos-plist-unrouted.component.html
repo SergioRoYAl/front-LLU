@@ -1,0 +1,75 @@
+
+
+<div class="text-center mb-3">
+  <a class="btn btn-primary mx-1" [routerLink]="['/gProductos','new']">Nuevo producto</a>
+</div>
+      <div *ngIf="status!=null">
+        <div class="d-flex justify-content-center my-3">
+          <div class="alert alert-danger" role="alert">
+            {{status!.error.message}} - {{status!.message}}
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="status==null">
+        <div class="d-flex justify-content-between mb-3">
+          <h3>No hay filtro activo</h3>
+          <h3>Mostrando {{oPage?.numberOfElements}} de un total de {{oPage?.totalElements}} productos.</h3>
+        </div>
+        <div class="flex justify-content-center mb-3">
+          <p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+            [totalRecords]="oPage?.totalElements || 0"></p-paginator>
+        </div>
+      
+        <div class="mb-5 ">
+          <table class="table table-bordered table-striped table-hover table-sm">
+            <thead>
+              <tr>
+                <th (click)="doOrder('id')">ID</th>
+                <th (click)="doOrder('nombre')">Nombre</th>
+                <th (click)="doOrder('descripcion')">Descripcion</th>
+                <th (click)="doOrder('tamanyo')">Tamaño</th>
+                <th (click)="doOrder('materiales')">Materiales</th>
+                <th (click)="doOrder('fecha_creacion')">Fecha Creación</th>
+                <th (click)="doOrder('color')">Color</th>
+                <th (click)="doOrder('precio')">Precio</th>
+                <th (click)="doOrder('visible')">Visibilidad</th>
+                <th (click)="doOrder('foto')">Foto</th>
+                <th (click)="doOrder('tipo')">Categoria</th>
+                <th>Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of oPage?.content" class="align-middle">
+                <td class="text-end"><strong>{{p.id}}</strong></td>
+                <td>{{p.nombre}}</td>
+                <td>{{p.descripcion}}</td>
+                <td>{{p.tamanyo}}</td>
+                <td>{{p.materiales}}</td>
+                <td>{{p.fecha_creacion}}</td>
+                <td>{{p.color}}</td>
+                <td>{{p.precio}}</td>
+                <td *ngIf="p.visible == false">No visible</td>
+                <td *ngIf="p.visible == true">Visible</td>
+                <td>{{p.foto}}</td>
+                <td>{{p.tipo}}</td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button class="btn btn-primary" [routerLink]="['/gProductos','detail',p.id]"><i
+                        class="pi pi-eye"></i></button>
+                    <button class="btn btn-primary" (click)="doView(p)"><i class="pi pi-arrow-circle-up"></i></button>
+                    <button class="btn btn-warning" [routerLink]="['/gProductos','edit',p.id]"><i
+                        class="pi pi-pencil"></i></button>
+                    <button class="btn btn-danger" (click)="doRemove(p)"><i
+                        class="pi pi-trash"></i></button>
+                    <button class="btn btn-success" (click)="abrirDialogo(p)"><i
+                          class="pi pi-upload"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>

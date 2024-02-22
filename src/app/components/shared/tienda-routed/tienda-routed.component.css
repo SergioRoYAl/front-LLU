@@ -1,0 +1,26 @@
+.titulo{
+    color: white;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.paginator{
+    background-color: black;
+}
+
+.productos{
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #888888;
+ 
+}
+
+.paginator-custom ::ng-deep .p-paginator {
+    background-color: black; /* Cambia este valor al color de fondo deseado */
+    color: white;
+  }
+
+::ng-deep .p-ripple{
+    color: white;
+}

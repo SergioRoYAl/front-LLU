@@ -1,0 +1,41 @@
+<div *ngIf="strUserName">
+    <h1 class="text-center mt-5 mb-5">BIENVENIDO A TU CARRITO</h1>
+    <div >
+        <div class="container" >
+            <div class="row">
+              <div *ngFor="let detallepedido of detallepedidos" class="mb-1">
+                <app-carrito-card-unrouted [detallepedido]="detallepedido"></app-carrito-card-unrouted>
+              </div>
+            </div>
+          </div>
+          <div class="container resultado">
+            <div class="d-flex justify-content-between elementos text-center ">
+              
+                <div class="col-2"></div>
+                <div class="col-2"></div>
+                <div class="col-2"></div>
+                <div class="col-2">PRECIO TOTAL:</div>
+                <div class="col-2 mr-5">{{precioTotal}}€</div>  
+              
+             
+            </div>
+          </div>
+          <div class="container resultado">
+            <div class="d-flex justify-content-between elementos text-center ">
+              
+                <div class="col-2"><button class="btn btn-danger">BORRAR</button></div>
+                <div class="col-2"></div>
+                <div class="col-2"></div>
+                <div class="col-2"><button class="btn btn-warning " (click)="encargar()">ENCARGAR</button></div>
+                <div class="col-2 mr-5"><button class="btn btn-success btn-" (click)="comprar()">COMPRAR</button></div>  
+              
+             
+            </div>
+          </div>
+          
+    </div>
+   
+</div>
+<div *ngIf="!strUserName" class="text-center mt-3">
+    <h1>REGISTRATE PARA PODER AÑADIR PRODUCTOS AL CARRITO</h1>
+</div>

@@ -1,0 +1,101 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      {{status!.error.message}} - {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="col-12">
+    <div class="d-flex justify-content-center my-3">
+      <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <mat-form-field *ngIf="operation=='EDIT'">
+            <mat-label>ID:</mat-label>
+            <input matInput formControlName="id" placeholder="ID" required readonly>
+            <mat-hint align="end">(can't change this number)</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Nombre:</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('nombre', 'required')">El nombre es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Descripcion:</mat-label>
+            <input matInput formControlName="descripcion" placeholder="Descripcion" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('descripcion', 'required')">La descripcion es necesaria</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Tamaño:</mat-label>
+            <input matInput formControlName="tamanyo" placeholder="Tamaño">
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error >El tamaño es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Materiales:</mat-label>
+            <input matInput formControlName="materiales" placeholder="Materiales">
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error >Los materiales son necesarios</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Fecha de creación:</mat-label>
+            <input matInput formControlName="fecha_creacion" placeholder="Fecha de Creacion" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('materiales', 'required')">La fecha de creación es necesaria</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Color:</mat-label>
+            <input matInput formControlName="color" placeholder="Color" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('materiales', 'required')">El color es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Precio:</mat-label>
+            <input matInput formControlName="precio" placeholder="Precio" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error *ngIf="hasError('precio', 'required')">El precio es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-radio-group matInput formControlName="visible" aria-label="Selecciona una opción" required>
+            <mat-label>VISIBILIDAD:</mat-label>
+            <mat-radio-button value="true">Visible</mat-radio-button>
+            <mat-radio-button value="false">No visible</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="form-group">
+          <mat-radio-group formControlName="tipo" aria-label="Selecciona una opción" required>
+            <mat-label>Categoria:</mat-label>
+            <mat-radio-button value="necklace">Necklace</mat-radio-button>
+            <mat-radio-button value="bracelet">Bracelet</mat-radio-button>
+            <mat-radio-button value="earing">Earing</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!productoForm.valid">Guardar Producto</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

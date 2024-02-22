@@ -1,3 +1,58 @@
-<p>
-  gestion-user-detail-unrouted works!
-</p>
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+      <div class="alert alert-danger" role="alert">
+          {{status!.error.message}} - {{status!.message}}
+      </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <table class="table table-striped table-hover">
+      <tbody>
+          <tr>
+              <th>Entrada</th>
+              <th>Contenido</th>
+          </tr>
+          <tr>
+              <th>Id</th>
+              <td>{{oUser.id}}</td>
+          </tr>
+          <tr>
+              <th>Nombre</th>
+              <td>{{oUser.nombre}}</td>
+          </tr>
+          <tr>
+              <th>Apellidos</th>
+              <td>{{oUser.apellidos}}</td>
+          </tr>
+          <tr>
+            <th>Dirección</th>
+            <td>{{oUser.username}}</td>
+          </tr>
+          <tr>
+            <th>Rol</th>
+            <td>{{oUser.role}}</td>
+          </tr>
+          <tr>
+            <th>Fecha de Nacimiento</th>
+            <td>{{oUser.fecha_nacimiento}}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{oUser.email}}</td>
+          </tr>
+          <tr>
+              <th>Noticias</th>
+              <td><a [routerLink]="['/gBlog' , 'viewBy', oUser.id]">{{oUser.noticias}}</a></td>
+          </tr>
+          <tr>
+            <th>Respuestas</th>
+            <td><a [routerLink]="['/gRespuestas' , 'viewBy', oUser.id]">{{oUser.respuestas}}</a></td>
+        </tr>
+        <tr>
+          <th>Documentos</th>
+          <td><a [routerLink]="['/gUsuarios' , 'view', oUser.id]">{{oUser.documentos}}</a></td>
+      </tr>
+      </tbody>
+  </table>
+</div>

@@ -38,7 +38,7 @@ export class MenuUnroutedComponent implements OnInit {
         this.strUrl = ev.url;
       }})
 
-    this.strUserName = oSessionService.getUsername();
+    this.strUserName = this.oSessionService.getUsername();
     this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
       next: (oUser: IUser) => {
         this.oSessionUser = oUser;

@@ -1,7 +1,5 @@
 
 
-
-
 export interface Sort {
     empty: boolean;
     sorted: boolean;
@@ -48,7 +46,7 @@ export interface IUser extends IEntity {
     direccion: string;
     username: string;
     role: boolean;
-    fechaNacimiento: Date;
+    fecha_nacimiento: Date;
     email: string;
     noticias: number;
     respuestas: number;
@@ -63,10 +61,28 @@ export interface IProducto extends IEntity {
     descripcion: string;
     tamanyo: string;
     materiales: string;
-    fechaCreacion: Date;
+    fecha_creacion: Date;
     color: string;
     precio: number;
+    foto: string;
+    tipo: string;
+    visible: boolean;
 }
+
+export interface IProductoUpdate extends IEntity {
+    nombre: string;
+    descripcion: string;
+    tamanyo: string;
+    materiales: string;
+    fecha_creacion: Date;
+    color: string;
+    precio: number;
+    foto: string;
+    tipo: string;
+    visible: boolean;
+    
+}
+
 
 export interface IProductoPage extends IPage<IProducto> {
 }
@@ -74,7 +90,17 @@ export interface IProductoPage extends IPage<IProducto> {
 export interface INoticia extends IEntity {
     titulo: string;
     descripcion: string;
-    user: IUser;
+    usuario: IUser;
+    foto: string;
+    visible: boolean;
+}
+
+export interface INoticiaUpdate extends IEntity {
+    titulo: string;
+    descripcion: string;
+    usuario: { id: number};
+    foto: string;
+    visible: boolean;
 }
 
 export interface INoticiaPage extends IPage<INoticia> {
@@ -82,7 +108,7 @@ export interface INoticiaPage extends IPage<INoticia> {
 }
 
 export interface IRespuesta extends IEntity {
-    user: IUser;
+    usuario: IUser;
     respuesta: string;
     noticia: INoticia;
 }
@@ -98,14 +124,24 @@ export interface IDetallePedido extends IEntity {
     precio: number;
 }
 
+export interface IDetallePedidoPage extends IPage<IDetallePedido> {
+
+}
+
 export interface IDocumento extends IEntity {
-    user: IUser;
-    fecha_pedido: Date;
+    usuario: IUser;
+    fecha_pedido: string | null;
 }
 
 export interface IDocumentoPage extends IPage<IDocumento> {
 
 }
+
+export interface IVisible {
+    value: boolean;
+    label: string;
+  }
+  
 
 export interface SessionEvent {
     type: string;
@@ -125,3 +161,5 @@ export interface PaginatorState {
     rows?: number;
     pageCount?: number;
 }
+
+export type formOperation = 'EDIT' | 'NEW';

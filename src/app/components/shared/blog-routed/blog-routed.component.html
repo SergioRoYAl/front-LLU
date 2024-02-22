@@ -1,3 +1,7 @@
-<p>
-  blog-routed works!
-</p>
+<h1 class="text-center mt-5 mb-5">BLOG</h1>
+
+<div class="d-flex flex-row flex-wrap ">
+  <div class="col-md-3 noticias" *ngFor="let noticia of noticias">
+    <app-blog-card-unrouted [noticia]="noticia"></app-blog-card-unrouted>
+  </div>
+</div>

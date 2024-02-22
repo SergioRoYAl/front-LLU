@@ -1,0 +1,65 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      {{status!.error.message}} - {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <th>Entrada</th>
+        <th>Contenido</th>
+      </tr>
+      <tr>
+        <th>id</th>
+        <td>{{oProducto.id}}</td>
+      </tr>
+      <tr>
+        <th>nombre</th>
+        <td>{{oProducto.nombre}}</td>
+      </tr>
+      <tr>
+        <th>descripcion</th>
+        <td>{{oProducto.descripcion}}</td>
+      </tr>
+      <tr>
+        <th>tamaño</th>
+        <td>{{oProducto.tamanyo}}</td>
+      </tr>
+      <tr>
+        <th>materiales</th>
+        <td>{{oProducto.materiales}}</td>
+      </tr>
+      <tr>
+        <th>fecha creacion</th>
+        <td>{{oProducto.fecha_creacion}}</td>
+      </tr>
+      <tr>
+        <th>color</th>
+        <td>{{oProducto.color}}</td>
+      </tr>
+      <tr>
+        <th>precio</th>
+        <td>{{oProducto.precio}}</td>
+      </tr>
+      <tr>
+        <th>visible</th>
+        <td *ngIf="oProducto?.visible == true">Visible</td>
+        <td *ngIf="oProducto?.visible == false">No Visible<td>
+    </tr>
+    <tr>
+      <th>foto</th>
+      <td>{{oProducto.foto}}</td>
+    </tr>
+    <tr>
+      <th>tipo</th>
+      <td>{{oProducto.tipo}}</td>
+    </tr>
+    
+
+    </tbody>
+  </table>
+</div>

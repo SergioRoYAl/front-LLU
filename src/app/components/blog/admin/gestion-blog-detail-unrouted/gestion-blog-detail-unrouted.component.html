@@ -1,3 +1,34 @@
-<p>
-  gestion-blog-detail-unrouted works!
-</p>
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+      <div class="alert alert-danger" role="alert">
+          {{status!.error.message}} - {{status!.message}}
+      </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <table class="table table-striped table-hover">
+      <tbody>
+          <tr>
+              <th>Entrada</th>
+              <th>Contenido</th>
+          </tr>
+          <tr>
+              <th>id</th>
+              <td>{{oNoticia.id}}</td>
+          </tr>
+          <tr>
+              <th>titulo</th>
+              <td>{{oNoticia.titulo}}</td>
+          </tr>
+          <tr>
+              <th>descripcion</th>
+              <td>{{oNoticia.descripcion}}</td>
+          </tr>
+          <tr>
+              <th>usuario</th>
+              <td><a [routerLink]="['/gUsuarios' , 'view', oNoticia.usuario.id]">{{oNoticia.usuario.username}}</a></td>
+          </tr>
+      </tbody>
+  </table>
+</div>

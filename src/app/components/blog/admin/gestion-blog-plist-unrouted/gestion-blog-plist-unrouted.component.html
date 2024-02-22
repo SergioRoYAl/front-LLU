@@ -1,3 +1,79 @@
-<p>
-  gestion-blog-plist-unrouted works!
-</p>
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col">
+          <div class="d-flex justify-content-center mt-5">
+              <mat-icon class="icon-display" style="transform: scale(2);">calendar_today</mat-icon>
+          </div>
+          <div class="d-flex justify-content-center">
+              <h1 class="my-3">Lista de noticias</h1>
+          </div>
+          <div class="card text-center m-5" *ngIf="bLoading">
+              <div class="card-body">
+                  <h3 class="text-danger">Processing... wait, please.</h3>
+                  <div class="spinner-grow text-primary my-5" role="status">
+                      <span class="sr-only"></span>
+                  </div>
+              </div>
+          </div>
+          <div class="d-flex justify-content-center" *ngIf="!bLoading">
+              <a class="btn btn-primary mx-1" [routerLink]="['/gBlog','new']">Nueva noticia</a>
+          </div>
+      </div>
+      <div *ngIf="status!=null">
+        <div class="d-flex justify-content-center my-3">
+          <div class="alert alert-danger" role="alert">
+            {{status!.error.message}} - {{status!.message}}
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="status==null">
+        <div class="d-flex justify-content-between mb-3">
+          <h3>No hay filtros activos</h3>
+          <h3>Mostrando {{oPage?.numberOfElements}} de un total de {{oPage?.totalElements}} noticias.</h3>
+        </div>
+        <div class="flex justify-content-center mb-3">
+          <p-paginator (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+            [totalRecords]="oPage?.totalElements || 0"></p-paginator>
+        </div>
+      
+        <div class="mb-5 ">
+          <table class="table table-bordered table-striped table-hover table-sm">
+            <thead>
+              <tr>
+                <th (click)="doOrder('id')">ID</th>
+                <th (click)="doOrder('titulo')">Titulo</th>
+                <th (click)="doOrder('descripcion')">descripcion</th>
+                <th (click)="doOrder('user')">User</th>
+                <th (click)="doOrder('visible')">Visible</th>
+                <th>Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let n of oPage?.content" class="align-middle">
+                <td class="text-end"><strong>{{n.id}}</strong></td>
+                <td>{{n.titulo}}</td>
+                <td>{{n.descripcion}}</td>
+                <td>{{n.usuario.username}}</td>
+                <td *ngIf="n.visible == false">No visible</td>
+                <td *ngIf="n.visible == true">Visible</td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button class="btn btn-primary" [routerLink]="['/gBlog','detail',n.id]"><i
+                        class="pi pi-eye"></i></button>
+                    <button class="btn btn-primary" (click)="doView(n)"><i class="pi pi-arrow-circle-up"></i></button>
+                    <button class="btn btn-warning" [routerLink]="['/gBlog','edit',n.id]"><i
+                        class="pi pi-pencil"></i></button>
+                    <button class="btn btn-danger" (click)="doRemove(n)"><i
+                        class="pi pi-trash"></i></button>
+                    <button class="btn btn-success" (click)="abrirDialogo(n)"><i
+                          class="pi pi-upload"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>

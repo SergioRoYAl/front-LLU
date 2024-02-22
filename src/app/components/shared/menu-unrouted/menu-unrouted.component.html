@@ -11,9 +11,11 @@
         
       </div>
 
-      <div class="navbar-item">
+      <div class="navbar-item apartado">
         <p-button  label="TIENDA"class="mr-2 " routerLink="/tienda" severity="warning" [text]="true" size="large"></p-button>
-        <p-button  label="BLOG"class="mr-2 "  severity="warning" [text]="true" size="large"></p-button>
+        <p-button  label="BLOG"class="mr-2 " routerLink="/blog" severity="warning" [text]="true" size="large"></p-button>
+        <p-button  label="CARRITO"class="mr-2 " routerLink="/carrito" severity="warning" [text]="true" size="large"></p-button>
+        <p-button  label="PEDIDOS"class="mr-2 " routerLink="/pedidos" severity="warning" [text]="true" size="large"></p-button>
       </div>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" (click)="toggleNavbar()">
@@ -23,7 +25,7 @@
       </a>
     </div>
   
-    <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{'is-active': isNavbarActive}">
+    <div id="navbarBasicExample" class="navbar-menu bg-black " [ngClass]="{'is-active': isNavbarActive}">
       
   
       <div class="navbar-end" *ngIf="!strUserName">
@@ -32,7 +34,7 @@
             <p-button  label="Lúcete" icon="pi pi-user-plus" class="mr-2 lucete"  severity="warning" [text]="true" size="large"></p-button>
             
             <p-button (click)="showDialog()" icon="pi pi-user" label="Ilumina" class="lucete" severity="warning" [text]="true" size="large"></p-button>
-                <p-dialog [(visible)]="visible">
+                <p-dialog [(visible)]="visible" class="p-custom-dialog">
                     <app-login-unrouted></app-login-unrouted>
                 </p-dialog>
           </div>
@@ -40,13 +42,17 @@
       </div>
       <div class="navbar-end" *ngIf="strUserName">
           <div class="navbar-item" *ngIf="strUserName && oSessionUser?.role==false">
-            <p-button routerLink="/gUsuarios" label="GESTIÓN USUARIOS" icon="pi pi-user" [text]="true"></p-button>
-            <p-button routerLink="" label="GESTIÓN BLOG" icon="pi pi-align-justify" [text]="true"></p-button>
+            <p-tag severity="success" value="GESTIÓN"></p-tag>
+            <p-button routerLink="/gProductos" label="PRODUCTOS" icon="pi pi-tag" [text]="true"></p-button>
+            <p-button routerLink="/gUsuarios" label="USUARIOS" icon="pi pi-user" [text]="true"></p-button>
+            <p-button routerLink="/gBlog" label="BLOG" icon="pi pi-align-justify" [text]="true"></p-button>
+            
+            
           </div>
-          <div class="buttons is-centered p-5">
-            <p-button (click)="logout()" label="APAGAR" icon="pi pi-times" [text]="true"></p-button>
+          <div class="navbar-item">
+            <p-button class="ml-5" (click)="logout()" label="APAGAR" icon="pi pi-times" [text]="true"></p-button>
           </div>
-        
+          
       </div>
     </div>
 

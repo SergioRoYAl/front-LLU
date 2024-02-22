@@ -1,10 +1,49 @@
-
-
-<p-card [style]="{ width: '360px' }" >
-  <img src="path/to/your/image.jpg" alt="Product Image">
+<!--<div class="carta mt-5">
   <div class="card-body">
-    <h5 class="card-title">{{ product.nombre }}</h5>
-    <p class="card-text">{{ product.descripcion }}</p>
-    <p class="card-text">Precio: {{ product.precio | currency:'EUR':'symbol' }}</p>
+    <h5 class="card-title text-white text-center mt-2 mb-2">{{ product.nombre }}</h5>
+    <img class="card-image foto" [src]="product.foto" alt="Noticia Image">
   </div>
-</p-card>
+</div> --> 
+<div class="container noselect mt-5">
+  <div class="canvas" (mousedown)="doView(product)">
+    <div class="tracker tr-1"></div>
+    <div class="tracker tr-2"></div>
+    <div class="tracker tr-3"></div>
+    <div class="tracker tr-4"></div>
+    <div class="tracker tr-5"></div>
+    <div class="tracker tr-6"></div>
+    <div class="tracker tr-7"></div>
+    <div class="tracker tr-8"></div>
+    <div class="tracker tr-9"></div>
+    <div class="tracker tr-10"></div>
+    <div class="tracker tr-11"></div>
+    <div class="tracker tr-12"></div>
+    <div class="tracker tr-13"></div>
+    <div class="tracker tr-14"></div>
+    <div class="tracker tr-15"></div>
+    <div class="tracker tr-16"></div>
+    <div class="tracker tr-17"></div>
+    <div class="tracker tr-18"></div>
+    <div class="tracker tr-19"></div>
+    <div class="tracker tr-20"></div>
+    <div class="tracker tr-21"></div>
+    <div class="tracker tr-22"></div>
+    <div class="tracker tr-23"></div>
+    <div class="tracker tr-24"></div>
+    <div class="tracker tr-25"></div>
+    <div id="card">
+      
+
+      <img class="card-image foto" [src]="imageSrc" alt="Noticia Image">
+    <p id="prompt">{{product.nombre}}</p>
+      <div class="title">{{product.descripcion}}</div>
+      
+      
+    </div>
+  </div>
+</div>
+  
+
+
+<!-- 
+    <p class="card-text text-white">Precio: {{ product.precio | currency:'EUR':'symbol' }}</p>-->

@@ -1,8 +1,16 @@
 
-<h1 class="text-center">Tienda</h1>
+<div *ngIf="status==null" class="paginator">
 
-<div class="row">
-  <div class="col-md-4" *ngFor="let product of products">
-    <app-product-card-unrouted [product]="product"></app-product-card-unrouted>
-  </div>
+  <div class="flex justify-content-center mb-3">
+    <p-paginator class="paginator paginator-custom  " (onPageChange)="onPageChange($event)" [first]="oPaginatorState.first!"
+      [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"></p-paginator>
+      <div class="container" >
+        <div class="row">
+          <div *ngFor="let product of products" class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <app-product-card-unrouted [product]="product"></app-product-card-unrouted>
+          </div>
+        </div>
+      </div>
+
+
 </div>
