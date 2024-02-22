@@ -17,6 +17,7 @@ export class GestionProductosUploadUnroutedComponent implements OnInit {
   producto: IProducto = {} as IProducto;
   productoUpdate: IProductoUpdate | null = null;
   url: string | undefined;
+  helperFoto: string | undefined;
 
   constructor(
     private MediaService: MediaService,
@@ -45,7 +46,7 @@ export class GestionProductosUploadUnroutedComponent implements OnInit {
 
           if (this.producto) {
             if (this.url) {
-
+              this.helperFoto = this.url.replace("http://localhost:8383/media/", "");
               this.productoUpdate = {
                 id: this.producto.id,
                 nombre: this.producto.nombre,
@@ -57,6 +58,8 @@ export class GestionProductosUploadUnroutedComponent implements OnInit {
                 precio: this.producto.precio,
                 visible: this.producto.visible,
                 foto: this.url.toString(),
+
+                
                 tipo: this.producto.tipo
                 
               }

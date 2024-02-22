@@ -9,6 +9,7 @@ import { DocumentoAjaxService } from '../../../../services/documento.ajax.servic
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DetallePedidoAjaxService } from '../../../../services/detallePedido.ajax.service';
 import { API_URL } from '../../../../../environment/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-view-unrouted',
@@ -42,7 +43,8 @@ export class ProductViewUnroutedComponent implements OnInit {
     @Optional() public config: DynamicDialogConfig,
     private oSessionService: SessionAjaxService,
     private oFormBuilder: FormBuilder,
-    private oDetallePedidoService: DetallePedidoAjaxService
+    private oDetallePedidoService: DetallePedidoAjaxService,
+    private oMatSnackBar: MatSnackBar
   ) {
     if (config) {
       if (config.data) {
@@ -131,14 +133,18 @@ export class ProductViewUnroutedComponent implements OnInit {
                         .subscribe({
                           next: (data: IDetallePedido) => {
                             this.detallePedidoCreado = data;
+                            this.oMatSnackBar.open("Producto añadido al carrito.", '', { duration: 2000 });   
+                          
                             console.log(data);
+
                           },
                           error: (error: HttpErrorResponse) => {
                             this.status = error;
                           }
                         });
                     }
-
+                    this.oMatSnackBar.open("Producto añadido al carrito.", '', { duration: 2000 });   
+                          
                         
                       
                   },
@@ -167,17 +173,19 @@ export class ProductViewUnroutedComponent implements OnInit {
                       .subscribe({
                         next: (data: IDetallePedido) => {
                           this.detallePedidoCreado = data;
+                          this.oMatSnackBar.open("Producto añadido al carrito.", '', { duration: 2000 });   
                           console.log(data);
                         },
                         error: (error: HttpErrorResponse) => {
                           this.status = error;
-                        }
+                            }
                       
                       });
                     console.log(data);
                   },
                   error: (error: HttpErrorResponse) => {
                     this.status = error;
+                     
                   }
                 })
               //AÑADIR DICHO PRODUCTO AL PEDIDO
@@ -186,11 +194,14 @@ export class ProductViewUnroutedComponent implements OnInit {
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
+            this.oMatSnackBar.open("Producto no añadido, inicia sesion.", '', { duration: 2000 });
+                     
           }
         });
 
     }
     this.actualizado = false;
+    
   }
 
 

@@ -43,7 +43,7 @@
               <tr *ngFor="let p of oPage?.content" class="align-middle">
                 <td class="text-end"><strong>{{p.id}}</strong></td>
                 <td>{{p.nombre}}</td>
-                <td>{{p.descripcion}}</td>
+                <td style="text-overflow: ellipsis;">{{p.descripcion}}</td>
                 <td>{{p.tamanyo}}</td>
                 <td>{{p.materiales}}</td>
                 <td>{{p.fecha_creacion}}</td>
@@ -51,7 +51,7 @@
                 <td>{{p.precio}}</td>
                 <td *ngIf="p.visible == false">No visible</td>
                 <td *ngIf="p.visible == true">Visible</td>
-                <td>{{p.foto}}</td>
+                <td><img src="http://localhost:8383/media/{{p.foto}}" alt="">{{p.foto}}</td>
                 <td>{{p.tipo}}</td>
                 <td class="text-center">
                   <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

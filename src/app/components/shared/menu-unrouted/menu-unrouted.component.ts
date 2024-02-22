@@ -20,6 +20,7 @@ export class MenuUnroutedComponent implements OnInit {
 
   strUserName: string = '';
   visible: boolean = false;
+  visibleReg: boolean = false;
   private unsubscribe$ = new Subject<void>();
   isNavbarActive = false;
   oSessionUser: IUser | null = null;
@@ -28,15 +29,17 @@ export class MenuUnroutedComponent implements OnInit {
   constructor(
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
+    public oDialogServiceRegister: DialogService,
     private oUserAjaxService: UserAjaxService,
     private oRouter: Router,
     private oMatSnackBar: MatSnackBar
-    
-  ) { 
+
+  ) {
     this.oRouter.events.subscribe((ev) => {
-      if (ev instanceof NavigationEnd){
+      if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
-      }})
+      }
+    })
 
     this.strUserName = this.oSessionService.getUsername();
     this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
@@ -55,15 +58,25 @@ export class MenuUnroutedComponent implements OnInit {
     this.isNavbarActive = !this.isNavbarActive;
   }
 
+  showDialogReg() {
+    this.visibleReg = true
+    this.visible = false;
+  }
+
+  closeDialogReg() {
+    this.visibleReg = false;
+  }
+
   showDialog() {
-      this.visible = true;
+    this.visible = true;
+    this.visibleReg = false;
   }
 
   closeDialog() {
-      this.visible = false;
-  } 
+    this.visible = false;
+  }
 
-  logout(){
+  logout() {
     this.oSessionService.logout();
     this.oSessionService.emit({ type: 'logout' });
     this.oMatSnackBar.open("Logout successfull.", '', { duration: 2000 });

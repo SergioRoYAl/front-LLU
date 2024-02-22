@@ -20,7 +20,7 @@ import { CarritoRoutedComponent } from './components/shared/carrito-routed/carri
 import { PedidoRoutedComponent } from './components/shared/pedido-routed/pedido-routed.component';
 
 export const routes: Routes = [
-    { path: '', component:  HomeRoutedComponent},
+    { path: '', component:  TiendaRoutedComponent},
     { path: 'tienda', component:  TiendaRoutedComponent},
     { path: 'blog', component:  BlogRoutedComponent},
     { path: 'pedidos', component: PedidoRoutedComponent},

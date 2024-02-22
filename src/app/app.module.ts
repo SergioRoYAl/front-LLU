@@ -72,6 +72,7 @@ import { CarritoCardUnroutedComponent } from "./components/carrito/user/carrito-
 import { PedidoUnroutedComponent } from "./components/pedido/user/pedido-unrouted/pedido-unrouted.component";
 import { PedidoRoutedComponent } from "./components/shared/pedido-routed/pedido-routed.component";
 import { PedidoCardUnroutedComponent } from "./components/pedido/user/pedido-card-unrouted/pedido-card-unrouted.component";
+import { UserFormUnroutedComponent } from "./components/usuarios/user/user-form-unrouted/user-form-unrouted.component";
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { PedidoCardUnroutedComponent } from "./components/pedido/user/pedido-car
 
         PedidoUnroutedComponent,
         PedidoRoutedComponent,
+        PedidoCardUnroutedComponent,
         PedidoCardUnroutedComponent,
         
         ProductCardUnroutedComponent,
@@ -126,6 +128,8 @@ import { PedidoCardUnroutedComponent } from "./components/pedido/user/pedido-car
         GestionBlogUploadUnroutedComponent,
         GestionBlogViewRoutedComponent,
         GestionBlogEditRoutedComponent,
+
+        UserFormUnroutedComponent,
 
         
     ],

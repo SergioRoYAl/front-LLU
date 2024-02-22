@@ -6,3 +6,16 @@
     border: 1px solid black; /* Solo para visualización */
     font-size: 1.4vw;
 }
+
+.sumarrestar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sumaresta{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    
+}

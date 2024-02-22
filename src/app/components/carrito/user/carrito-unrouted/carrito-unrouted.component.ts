@@ -23,14 +23,14 @@ export class CarritoUnroutedComponent implements OnInit {
   strUrl: string = '';
 
   usuario: IUser = {} as IUser;
-  documento: IDocumento = {} as IDocumento;
+  documento: IDocumento = { usuario: {} } as IDocumento;
   detallepedidos: IDetallePedido[] = [];
   oPage: IDetallePedidoPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-
+  documentoAEnviar: IDocumento = { usuario: {} } as IDocumento;
   precioTotal: number = 0;
 
   constructor(
@@ -42,9 +42,10 @@ export class CarritoUnroutedComponent implements OnInit {
 
   ) {
     this.oRouter.events.subscribe((ev) => {
-      if (ev instanceof NavigationEnd){
+      if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
-      }})
+      }
+    })
 
     this.strUserName = oSessionService.getUsername();
     this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
@@ -56,7 +57,7 @@ export class CarritoUnroutedComponent implements OnInit {
         console.log(error);
       }
     });
-   }
+  }
 
   ngOnInit() {
     this.getProductPage();
@@ -84,7 +85,7 @@ export class CarritoUnroutedComponent implements OnInit {
                     //AHORA CALCULAR EL PRECIO TOTAL DEL CARRITO respecto la pagina de detallepedidos.precio
                     this.precioTotal = this.detallepedidos.reduce((acc, item) => acc + item.precio, 0);
                   },
-                  error:(error: HttpErrorResponse) => {
+                  error: (error: HttpErrorResponse) => {
                     this.status = error;
                   }
                 });
@@ -101,9 +102,9 @@ export class CarritoUnroutedComponent implements OnInit {
         }
       })
 
-    
 
-    
+
+
   }
 
   comprar() {
@@ -111,28 +112,57 @@ export class CarritoUnroutedComponent implements OnInit {
   }
 
   encargar() {
-
     const fechaActual = new Date();
 
-// Obtener los componentes de la fecha (año, mes y día)
-const año = fechaActual.getFullYear();
-const mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2); // Se suma 1 al mes porque los meses comienzan desde 0
-const dia = ('0' + fechaActual.getDate()).slice(-2);
+    // Obtener los componentes de la fecha (año, mes y día)
+    const año = fechaActual.getFullYear();
+    const mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2); // Se suma 1 al mes porque los meses comienzan desde 0
+    const dia = ('0' + fechaActual.getDate()).slice(-2);
 
-// Formatear la fecha en el formato deseado (YYYY-MM-DD)
-const fechaFormateada = `${año}-${mes}-${dia}`;
+    // Formatear la fecha en el formato deseado (YYYY-MM-DD)
+    const fechaFormateada = `${año}-${mes}-${dia}`;
 
-    this.documento.fecha_pedido = fechaFormateada;
-    this.oDocumentoAjaxService.updateOne(this.documento)
-      .subscribe({
-        next: (data: IDocumento) => {
-          this.documento = data;
-          this.getProductPage();
+
+    this.oSessionService.getSessionUser()
+      ?.subscribe({
+        next: (data: IUser) => {
+          this.oSessionUser = data;
+
+          this.oDocumentoAjaxService.lastPendiente(this.oSessionUser.id)
+            .subscribe({
+              next: (data: IDocumento) => {
+                this.documento = data;
+                this.documentoAEnviar = {
+                  id: this.documento.id,
+                  fecha_pedido: fechaFormateada,
+                  usuario: { id: this.documento.usuario.id } as IUser,
+                }
+
+                this.oDocumentoAjaxService.updateOne(this.documentoAEnviar)
+                .subscribe({
+                  next: (data: IDocumento) => {
+                    this.documento = data;
+                    this.getProductPage();
+                    window.location.reload();
+                    
+                  },
+                  error: (error: HttpErrorResponse) => {
+                    this.status = error;
+                  }
+                })
+
+              },
+              error: (error: HttpErrorResponse) => {
+                this.status = error;
+              }
+            })
+
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
         }
       })
+   
   }
 
   onPageChange(event: PaginatorState) {
@@ -141,6 +171,6 @@ const fechaFormateada = `${año}-${mes}-${dia}`;
     this.getProductPage();
   }
 
-  
+
 
 }

@@ -26,6 +26,13 @@ export class DocumentoAjaxService {
       return this.oHttpClient.get<IDocumentoPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
   }
 
+  getPageByUser(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, id: number):
+    Observable<IDocumentoPage>{
+      if (!size) size = 10;
+      if (!page) page = 0;
+      return this.oHttpClient.get<IDocumentoPage>(this.sUrl + "/usuario/" + id + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection);
+  }
+
   
   removeOne(id: number | undefined): Observable<number>{
     if(id){
@@ -47,7 +54,4 @@ export class DocumentoAjaxService {
     return this.oHttpClient.get<IDocumento>(this.sUrl + "/pendiente/" + id);
   }
 
-  encargar(oDocumento: IDocumento): Observable<IDocumento>{
-    return this.oHttpClient.get<IDocumento>(this.sUrl + "/encargar" + oDocumento);
-  }
 }
