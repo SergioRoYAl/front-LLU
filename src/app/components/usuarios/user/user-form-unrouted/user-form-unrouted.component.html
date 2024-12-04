@@ -29,17 +29,25 @@
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
             <mat-label>Dirección:</mat-label>
-            <input matInput formControlName="direccion" placeholder="Dirección">
+            <input matInput formControlName="direccion" placeholder="Dirección" required>
             <mat-hint align="end">(3 to 255 characters long)</mat-hint>
-            <mat-error >La dirección es necesaria</mat-error>
+            <mat-error *ngIf="hasError('direccion', 'required')">La dirección es necesaria</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
             <mat-label>Username:</mat-label>
-            <input matInput formControlName="username" placeholder="Username">
+            <input matInput formControlName="username" placeholder="Username" required>
             <mat-hint align="end">(3 to 255 characters long)</mat-hint>
-            <mat-error >El username es necesario</mat-error>
+            <mat-error *ngIf="hasError('username', 'required')">El username es necesario</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Password:</mat-label>
+            <input matInput formControlName="password" placeholder="Password" required>
+            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
+            <mat-error >El password es necesario</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">

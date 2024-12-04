@@ -33,6 +33,7 @@
           <div class="buttons is-centered p-5 ">
             <p-button (click)="showDialogReg()" label="Lúcete" icon="pi pi-user-plus" class="mr-2 lucete"  severity="warning" [text]="true" size="large">
               <p-dialog [(visible)]="visibleReg" class="p-custom-dialog">
+                <button pButton type="button" label="Cerrar" icon="pi pi-times" (click)="closeDialogReg()"></button>
                 <app-user-form-unrouted></app-user-form-unrouted>
       
             </p-dialog>
@@ -40,6 +41,7 @@
             
             <p-button (click)="showDialog()" icon="pi pi-user" label="Ilumina" class="lucete" severity="warning" [text]="true" size="large"></p-button>
                 <p-dialog [(visible)]="visible" class="p-custom-dialog">
+                  <button pButton type="button" label="Cerrar" icon="pi pi-times" (click)="closeDialog()"></button>
                     <app-login-unrouted></app-login-unrouted>
                 </p-dialog>
           </div>

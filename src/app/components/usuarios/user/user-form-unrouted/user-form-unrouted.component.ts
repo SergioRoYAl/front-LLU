@@ -6,6 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserAjaxService } from '../../../../services/user.ajax.service';
+import { CryptoService } from '../../../../services/crypto.service';
 
 @Component({
   selector: 'app-user-form-unrouted',
@@ -28,12 +29,14 @@ export class UserFormUnroutedComponent implements OnInit { //new or edit
     private oFormBuilder: FormBuilder,
     private oUserAjaxService: UserAjaxService,
     private oRouter: Router,
+    private oCryptoService: CryptoService,
     private oMatSnackBar: MatSnackBar,
     public oDialogService: DialogService,
   ) {
     if(this.oUser){
+      
       this.initializeForm(this.oUser);
-    }
+    } 
   }
 
   initializeForm(oUser: IUser) {
@@ -43,6 +46,7 @@ export class UserFormUnroutedComponent implements OnInit { //new or edit
       apellidos: [oUser.apellidos, [Validators.required]],
       direccion: [oUser.direccion],
       username: [oUser.username],
+      password: [oUser.password, [Validators.required]],
       role: false,
       fecha_nacimiento: [oUser.fecha_nacimiento, [Validators.required]],
       email: [oUser.email, [Validators.required]]
@@ -60,8 +64,11 @@ export class UserFormUnroutedComponent implements OnInit { //new or edit
 
   onSubmit() {
     if (this.userForm.valid) {
+      
+        this.userForm.value.password = this.oCryptoService.getSHA256(this.userForm.value.password);
         this.oUserAjaxService.newOne(this.userForm.value).subscribe({
           next: (data: IUser) => {
+            console.log(this.userForm.value);
             this.oUser = data;
             // avisar al usuario que se ha creado correctamente
             this.oMatSnackBar.open("El usuario ha sido creado.", '', { duration: 2000 });
