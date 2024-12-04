@@ -8,9 +8,7 @@
   
     <mat-form-field class="full-width input2">
       <input matInput type="password" placeholder="Password" formControlName="password">
-      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
-      <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters length</mat-error>
-    </mat-form-field>
+     </mat-form-field>
   </div>
   
   <div class="control-group">
