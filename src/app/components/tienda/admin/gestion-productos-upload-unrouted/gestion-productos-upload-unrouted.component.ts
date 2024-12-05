@@ -46,7 +46,7 @@ export class GestionProductosUploadUnroutedComponent implements OnInit {
 
           if (this.producto) {
             if (this.url) {
-              this.helperFoto = this.url.replace("http://localhost:8383/media/", "");
+              this.helperFoto = this.url.split('/media/')[1];
               this.productoUpdate = {
                 id: this.producto.id,
                 nombre: this.producto.nombre,
@@ -57,7 +57,7 @@ export class GestionProductosUploadUnroutedComponent implements OnInit {
                 color: this.producto.color,
                 precio: this.producto.precio,
                 visible: this.producto.visible,
-                foto: this.url.toString(),
+                foto: this.helperFoto,
 
                 
                 tipo: this.producto.tipo
